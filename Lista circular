@@ -1,0 +1,1 @@
+A lista circular é basicamente a lista duplamente ligada porém o ultimo elemento na lista é ligado com o primeiro (fazendo um circulo com os elementos da lista).
