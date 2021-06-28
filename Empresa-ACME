@@ -1,0 +1,144 @@
+class Main {
+  private No primeiro;
+  private No ultimo;
+  private String nomeDaLista;
+
+  public Main(String nome) {
+    nomeDaLista = nome;
+    primeiro = ultimo = null;
+  }
+
+  public Main() {
+    nomeDaLista = "Lista de funcionários da ACME";
+    primeiro = ultimo = null;
+  }
+
+  public void InsereNaFrente(String item) {
+    if (Vazia()){
+      primeiro = ultimo = new No(item);
+    }else{
+      primeiro = new No(item, primeiro);
+    }
+  }
+
+  public void InsereNoFundo(String item) {
+    if (Vazia()){
+      primeiro = ultimo = new No(item);
+    }else{
+      ultimo.setProx(new No(item));
+      ultimo = ultimo.getProx();
+    }
+  }
+
+  public String RemoveDaFrente() {
+    if (Vazia()){
+      return null;
+    }
+    String item = primeiro.getDado();
+    if (primeiro == ultimo){
+      primeiro = ultimo = null;
+    }else{
+      primeiro = primeiro.getProx();
+    }  
+    return item;
+  }
+  public String RemoveDoFundo() {
+    if (Vazia()){
+      return null;
+    }
+    String item = ultimo.getDado();
+    if (primeiro == ultimo){
+      primeiro = ultimo = null;
+    }else{
+      No atual = primeiro;
+      while (atual.getProx() != ultimo)
+      atual = atual.getProx();
+      ultimo = atual;
+      atual.setProx(null);
+    }
+    return item;
+  }
+
+  public boolean Vazia() {
+    return primeiro == null;
+  }
+
+  public String EscreveLista() {
+    String temp = "";
+    if (Vazia()) {
+      temp += "Vazia " + nomeDaLista;
+      return temp;
+    }
+    temp += "a " + nomeDaLista + " contem: \n\n";
+    No atual = primeiro;
+    while (atual != null) {
+      temp += atual.getDado() + ", ";
+      atual = atual.getProx();
+    }
+    temp += "\n";
+    return temp;
+  }
+
+  public String exibePrim() {
+  if (primeiro == null)
+    return "Primeiro:null";
+  else 
+    return "Primeiro: " + primeiro.getDado();
+  }
+
+  public String exibeUlt() {
+  if (ultimo == null) 
+    return "Ultimo: null";
+  else 
+    return "Ultimo: " + ultimo.getDado();
+  }
+
+  public void Contratar(String nome){
+    System.out.println(nome+" foi contratado(a)!");
+    InsereNaFrente(nome);
+  }
+
+  public void VerificarFuncionario(String nome){
+    String temp = "";
+    if (Vazia()) {
+      System.out.println("Vazia "+nomeDaLista);
+    }
+    No atual = primeiro;
+    while (atual != null) {
+      temp += atual.getDado();
+      atual = atual.getProx();
+      int intIndex = temp.indexOf(nome);
+		  if(intIndex == - 1) {
+		  } else {
+		  	System.out.println(nome + " é funcionário(a)");
+        return;
+		  }
+    }
+    System.out.println(nome + " não é funcionário(a)");
+  }
+
+
+  public static void main (String[] args) {
+    Main l1 = new Main();
+
+    l1.InsereNaFrente("Pedro");
+    l1.InsereNaFrente("Roberta");
+    l1.InsereNaFrente("Ronaldo");
+    l1.InsereNaFrente("Robson");
+    l1.InsereNaFrente("Mário");
+    l1.InsereNaFrente("Luana");
+    l1.InsereNaFrente("Felipe");
+    l1.InsereNaFrente("Maria");
+
+    System.out.print(l1.EscreveLista());
+
+    l1.Contratar("João");
+
+    System.out.print(l1.EscreveLista());
+
+
+    l1.VerificarFuncionario("Maria");
+
+  }
+  
+}
