@@ -1,0 +1,1 @@
+Basicamente todo elemento na lista duplamente ligada é ligada ao o elemento anterior como o próximo elemento, e se tiver a adição de um novo elemento os elementos se ligam com ele. E isso faz com que a performance aumente significativamente.
